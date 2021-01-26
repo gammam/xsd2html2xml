@@ -60,18 +60,20 @@
 				};
 				
 				var download_cdi = function(xmlfile) {
-					const url = window.URL.createObjectURL(xmlfile);
+					// const url = window.URL.createObjectURL(xmlfile);
     				const a = document.createElement('a');
     				a.style.display = 'none';
-    				a.href = url;
+					//a.href = url;
+					a.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(xmlfile));
     				// the filename you want
     				a.download = 'cdi_sample.json';
     				document.body.appendChild(a);
-    				a.click();
-    				window.URL.revokeObjectURL(url);
+					a.click();
+					document.body.removeChild(a);
+    				// window.URL.revokeObjectURL(url);
     				alert('your file has downloaded!'); // or you know, something with better UX...
 				};
-				
+
 				var xmlToHTML = function(root) {
 					var xmlDocument;
 					
